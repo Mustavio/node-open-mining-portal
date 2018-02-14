@@ -1,0 +1,51 @@
+{
+    "enabled": true,
+    "coin": "garlicoin.json",
+
+    "address": "GNrLbMf46i6dsHMF5KJmhoV6gzD1VVbEk4",
+
+    "rewardRecipients": {
+        "Ggdt7S6jTBZqymxnV2CFFW397zTeqLSyvB": 0.69
+    },
+
+    "paymentProcessing": {
+        "enabled": true,
+        "paymentInterval": 20,
+        "minimumPayment": 0.1,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": 42068,
+            "user": "user",
+            "password": "password"
+        }
+    },
+
+    "ports": {
+        "3333": {
+            "diff": 8,
+            "varDiff": {
+                "minDiff": 8,
+                "maxDiff": 512,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        }
+    },
+
+    "p2p": {
+        "enabled": false,
+        "host": "127.0.0.1",
+        "port": 42069,
+        "disableTransactions": true
+    },
+
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 42068,
+            "user": "user",
+            "password": "password"
+        }
+    ]
+}

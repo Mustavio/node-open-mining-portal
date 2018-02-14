@@ -123,7 +123,12 @@ module.exports = function(logger){
             handlers.diff = function(workerName, diff){
                 mposCompat.handleDifficultyUpdate(workerName, diff);
             }
-        }
+        } 
+
+        //Functions required for Mongo Mode
+        //else if (poolOptions.mongoMode && poolOptions.mongoMode.enabled) {
+            //TODO: PRIORITY: Write this section
+        //}
 
         //Functions required for internal payment processing
         else{
@@ -136,7 +141,7 @@ module.exports = function(logger){
                 else {
                     if (workerName.length === 40) {
                         try {
-                            new Buffer(workerName, 'hex');
+                            Buffer.from(workerName, 'hex');
                             authCallback(true);
                         }
                         catch (e) {
@@ -146,7 +151,11 @@ module.exports = function(logger){
                     else {
                         pool.daemon.cmd('validateaddress', [workerName], function (results) {
                             var isValid = results.filter(function (r) {
-                                return r.response.isvalid
+                                if(typeof r.response == "undefined") {
+                                  console.log("validateaddress failed:", r);
+                                  return true;
+                                }
+                                return r.response.isvalid;
                             }).length > 0;
                             authCallback(isValid);
                         });
